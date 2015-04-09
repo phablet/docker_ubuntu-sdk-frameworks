@@ -1,4 +1,4 @@
-docker-images
-=============
+docker-ubuntu-sdk
+=================
 
-Various Dockerfile collection ready for use
+Dockerfile collection for Ubuntu SDK.
