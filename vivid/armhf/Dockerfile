@@ -1,8 +1,8 @@
-FROM vicamo/buildpack-deps:vivid-i386
+FROM vicamo/buildpack-deps:vivid-armhf
 
-RUN echo "deb http://archive.ubuntu.com/ubuntu/ vivid main restricted universe multiverse" > /etc/apt/sources.list \
-	&& echo "deb http://archive.ubuntu.com/ubuntu/ vivid-updates main restricted universe multiverse" >> /etc/apt/sources.list \
-	&& echo "deb http://archive.ubuntu.com/ubuntu/ vivid-security main restricted universe multiverse" >> /etc/apt/sources.list \
+RUN echo "deb http://ports.ubuntu.com/ubuntu-ports vivid main restricted universe multiverse" > /etc/apt/sources.list \
+	&& echo "deb http://ports.ubuntu.com/ubuntu-ports vivid-updates main restricted universe multiverse" >> /etc/apt/sources.list \
+	&& echo "deb http://ports.ubuntu.com/ubuntu-ports vivid-security main restricted universe multiverse" >> /etc/apt/sources.list \
 	&& echo "deb-src http://archive.ubuntu.com/ubuntu/ vivid main restricted universe multiverse" >> /etc/apt/sources.list \
 	&& echo "deb-src http://archive.ubuntu.com/ubuntu/ vivid-updates main restricted universe multiverse" >> /etc/apt/sources.list \
 	&& echo "deb-src http://archive.ubuntu.com/ubuntu/ vivid-security main restricted universe multiverse" >> /etc/apt/sources.list \

@@ -1,4 +1,4 @@
-FROM vicamo/buildpack-deps:vivid-i386
+FROM vicamo/buildpack-deps:vivid
 
 RUN echo "deb http://archive.ubuntu.com/ubuntu/ vivid main restricted universe multiverse" > /etc/apt/sources.list \
 	&& echo "deb http://archive.ubuntu.com/ubuntu/ vivid-updates main restricted universe multiverse" >> /etc/apt/sources.list \
