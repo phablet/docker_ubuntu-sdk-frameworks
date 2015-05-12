@@ -1,6 +1,9 @@
 #!/bin/bash
 
 set -x
+
+cd $(dirname ${BASH_SOURCE})
+
 #DRYRUN=echo
 
 DOCKER_USER=$(docker info | grep Username: | awk '{print $2}')
@@ -16,5 +19,16 @@ for dir in $(find . -type f -name Dockerfile); do
   host_arch=${target_arch%/*}
   target_arch=${target_arch#${host_arch}/}
   #echo "suite=${suite}, host_arch=${host_arch}, target_arch=${target_arch}"
-  ${DRYRUN} docker build --no-cache=true -t ${DOCKER_USER}ubuntu-sdk:${suite}-${host_arch}_${target_arch} ${dir}
+
+  img_prefix=${DOCKER_USER}ubuntu-sdk:frameworks-${suite}
+  img=${img_prefix}-${host_arch}-${target_arch}
+  ${DRYRUN} docker build --no-cache=true -t ${img} ${dir} && \
+    (
+      if [ "${target_arch}" = "${host_arch}" ]; then
+        ${DRYRUN} docker tag ${img} ${img_prefix}-${host_arch}
+        if [ "${host_arch}" = amd64 ]; then
+          ${DRYRUN} docker tag ${img} ${img_prefix}
+        fi
+      fi
+    )
 done
