@@ -6,9 +6,6 @@ cd $(dirname ${BASH_SOURCE})
 
 #DRYRUN=echo
 
-DOCKER_USER=$(docker info | grep Username: | awk '{print $2}')
-[ -n "${DOCKER_USER}" ] && DOCKER_USER=${DOCKER_USER}/
-
 for dir in $(find . -type f -name Dockerfile); do
   dir=${dir#./}
   dir=${dir%/Dockerfile}
@@ -20,7 +17,7 @@ for dir in $(find . -type f -name Dockerfile); do
   target_arch=${target_arch#${host_arch}/}
   #echo "suite=${suite}, host_arch=${host_arch}, target_arch=${target_arch}"
 
-  img_prefix=${DOCKER_USER}ubuntu-sdk:frameworks-${suite}
+  img_prefix=phablet/ubuntu-sdk-frameworks:${suite}
   img=${img_prefix}-${host_arch}-${target_arch}
   ${DRYRUN} docker build --no-cache=true -t ${img} ${dir} && \
     (
