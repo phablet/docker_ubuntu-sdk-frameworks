@@ -27,7 +27,9 @@ RUN echo "deb [arch=armhf] http://ports.ubuntu.com/ubuntu-ports vivid main restr
 		g++-arm-linux-gnueabihf \
 		pkg-config-arm-linux-gnueabihf \
 			\
+		liboxideqt-qmlplugin:armhf \
 		oxideqt-codecs-extra \
+		ubuntu-html5-container:armhf \
 		ubuntu-sdk-libs:armhf \
 		ubuntu-sdk-libs-dev:armhf \
 		ubuntu-sdk-libs-tools \
